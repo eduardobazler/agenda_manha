@@ -8,6 +8,7 @@ django = "*"
 flake8 = "*"
 gunicorn = "*"
 pytest-django = "*"
+python-decouple = "*"
 
 [dev-packages]
 
