@@ -1,0 +1,1 @@
+web: gunicorn agendamanha.wsgi --log-file -
