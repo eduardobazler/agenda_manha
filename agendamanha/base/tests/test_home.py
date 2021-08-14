@@ -16,7 +16,7 @@ def test_status_code(resp_home):
 
 
 def test_home_titulo(resp_home):
-    assert_contains(resp_home, '<title>Agenda manhã!</title>')
+    assert_contains(resp_home, '<title>Agenda manhã - Home</title>')
 
 
 def test_home_link(resp_home):

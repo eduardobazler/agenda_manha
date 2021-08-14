@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  database:
+    container_name: agendamanha_database
+    image: postgres:11.5
+    restart: always
+    volumes:
+      - ./.pgdata:/var/lib/postgresql/data
+    environment:
+      - LC_ALL=C.UTF-8
+      - POSTGRES_PASSWORD=bazler
+      - POSTGRES_USER=bazler
+    ports:
+      - 5432:5432

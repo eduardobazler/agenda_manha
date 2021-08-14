@@ -45,7 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # minhas aplicações
     'agendamanha.base',
+    'agendamanha.afirmacoes',
+    # para estilisar o forms
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,7 +81,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'agendamanha.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
