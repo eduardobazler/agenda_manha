@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block body %}
+
+    <div class="card text-center">
+      <div class="card-header">
+      </div>
+      <div class="card-body">
+        <h1 class="card-title">Afirmações</h1>
+        <p class="card-text">Afirmações	são	uma	das	ferramentas	mais eficientes	para se	tornar	rapidamente a
+            pessoa	que	você precisa ser para conquistar tudo o	que	deseja	na	vida.<br> Afirmações permitem que você
+            projete	e depois desenvolva	o estado mental (pensamentos, crenças, concentração) de	que	precisa	para
+            levar	qualquer área	de sua	vida	para o próximo nível.
+        </p>
+        <a href="{% url 'afirmacoes:add_afirmacao' %}" class="btn btn-primary">Add afirmação</a>
+      </div>
+    </div>
+    {% if messages %}
+        {% for massage in messages %}
+            <h2 {% if massage.tags %}class="alert alert-success" {% endif %}>{{ massage }}</h2>
+        {% endfor %}
+    {% endif %}
+
+    {% for afirmacao in afirmacoes %}
+            <div class="card">
+                  <div class="card-header">
+                    <h3>{{ afirmacao.titulo }}</h3>
+                  </div>
+                  <div class="card-body">
+                    <blockquote class="blockquote">
+                      <p>{{ afirmacao.text }}</p>
+                      <footer class="blockquote-footer">Data de atualização: <cite title="Source Title">{{ afirmacao.date_added }}</cite></footer>
+                        <a href="{% url 'afirmacoes:edit_afirmacao' afirmacao.id %}" class="btn btn-primary" style="margin-top: 10px;">Editar</a>
+                    </blockquote>
+                  </div>
+            </div>
+        {% empty %}
+            <div class="card">
+                  <div class="card-header">
+                    <h3 class="text-black-50">Não há afirmações para serem axibidas.</h3>
+                  </div>
+            </div>
+        {% endfor %}
+
+
+{% endblock body %}
+

@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <div class="card text-center">
+      <div class="card-header">
+      </div>
+      <div class="card-body">
+        <h1 class="card-title text-dark">Afirmações</h1>
+        <p class="card-text">Afirmações	são	uma	das	ferramentas	mais eficientes	para se	tornar	rapidamente a
+            pessoa	que	você precisa ser para conquistar tudo o	que	deseja	na	vida.<br> Afirmações permitem que você
+            projete	e depois desenvolva	o estado mental (pensamentos, crenças, concentração) de	que	precisa	para
+            levar	qualquer área	de sua	vida	para o próximo nível.
+        </p>
+      </div>
+    </div>
+    <form action="{% url 'afirmacoes:add_afirmacao' %}" method='post'>
+        {% csrf_token %}
+        <div class="card">
+              <div class="card-body">
+                 <h5 class="text-primary">Título: </h5>
+                  {{ form.titulo|as_crispy_field }}
+              </div>
+              <div class="card-body">
+                    <blockquote class="blockquote">
+                      <h5 class="text-primary">Afirmação:</h5>
+                      <p>{{ form.text|as_crispy_field}}</p>
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                    </blockquote>
+              </div>
+        </div>
+    </form>
+{% endblock body %}
