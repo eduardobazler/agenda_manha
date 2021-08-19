@@ -5,24 +5,23 @@
       <div class="card-header">
       </div>
       <div class="card-body">
-        <h1 class="card-title text-dark">Afirmações</h1>
-        {% include 'afirmacoes/frase_afirmacao.html' %}
+        <h1 class="card-title text-dark">Diário</h1>
+        {% include 'diario/frase_diario.html' %}
       </div>
     </div>
-    <form action="{% url 'afirmacoes:edit_afirmacao' afirmacao.id %}" method='post'>
+    <form action="{% url 'diario:edit_entrada' entrada.id %}" method='post'>
 
         {% csrf_token %}
         <div class="card">
               <div class="card-body">
-                 <h5 class="text-primary">Título: </h5>
-                  {{ form.titulo|as_crispy_field }}
+                 <h2 class="text-primary">{{ entrada.date_added }}</h2>
               </div>
               <div class="card-body">
                     <blockquote class="blockquote">
-                      <h5 class="text-primary">Afirmação:</h5>
+                      <h5 class="text-primary">Entrada:</h5>
                       <p>{{ form.text|as_crispy_field}}</p>
                         <button type="submit" class="btn btn-primary">Adicionar</button>
-                        <a href="{% url 'afirmacoes:del_afirmacao' afirmacao.id %}" class="btn btn-danger">Deletar</a>
+                        <a href="{% url 'diario:del_entrada' entrada.id %}" class="btn btn-danger">Deletar</a>
                     </blockquote>
               </div>
         </div>
