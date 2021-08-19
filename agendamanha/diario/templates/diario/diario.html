@@ -1,14 +1,13 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block body %}
-
     <div class="card text-center">
       <div class="card-header">
       </div>
       <div class="card-body">
-        <h1 class="card-title">Afirmações</h1>
-        {% include 'afirmacoes/frase_afirmacao.html' %}
-        <a href="{% url 'afirmacoes:add_afirmacao' %}" class="btn btn-primary">Add afirmação</a>
+        <h1 class="card-title">Diário</h1>
+        {% include 'diario/frase_diario.html' %}
+        <a href="{% url 'diario:add_entrada' %}" class="btn btn-primary">Add entrada.</a>
       </div>
     </div>
     {% if messages %}
@@ -16,17 +15,16 @@
             <h2 {% if massage.tags %}class="alert alert-success" {% endif %}>{{ massage }}</h2>
         {% endfor %}
     {% endif %}
-
-    {% for afirmacao in afirmacoes %}
+    {% for entrada in entradas %}
             <div class="card">
                   <div class="card-header">
-                    <h3>{{ afirmacao.titulo }}</h3>
+                    <h3 class="text-primary">{{ entrada.date_added | date:'d/m/Y - (D)' }}</h3>
                   </div>
                   <div class="card-body">
                     <blockquote class="blockquote">
-                      <p>{{ afirmacao.text | linebreaks }}</p>
-                      <footer class="blockquote-footer">Data de atualização: <cite title="Source Title">{{ afirmacao.date_added }}</cite></footer>
-                        <a href="{% url 'afirmacoes:edit_afirmacao' afirmacao.id %}" class="btn btn-primary" style="margin-top: 10px;">Editar</a>
+                      <p>{{ entrada.text | linebreaks }}</p>
+                      <footer class="blockquote-footer">Data de atualização: <cite title="Source Title">{{ entrada.date_added }}</cite></footer>
+                        <a href="{% url 'diario:edit_entrada' entrada.id %}" class="btn btn-primary" style="margin-top: 10px;">Editar</a>
                     </blockquote>
                   </div>
             </div>
@@ -37,7 +35,4 @@
                   </div>
             </div>
         {% endfor %}
-
-
 {% endblock body %}
-

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # minhas aplicações
     'agendamanha.base',
     'agendamanha.afirmacoes',
+    'agendamanha.diario',
     # para estilisar o forms
     'crispy_forms',
 ]
