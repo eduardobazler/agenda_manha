@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <main role="main" class="container">
+        <div class="pb-2 mb-2 border-bottom">
+        <h2 class="text-primary" style="margin-top: 10px;">Entre em sua conta.</h2>
+
+            </div>
+                {% if form.errors %}
+                    <p>Seu email ou senha não foram reconhecidos.
+                    Por favor, tente novamente.</p>
+                {% endif %}
+                <form method="post" action="{% url 'users:login' %}">
+
+                  {% csrf_token %}
+                  <div class="form-group">
+                      {{ form.username|as_crispy_field  }}
+                    <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+                  </div>
+
+                  <div class="form-group">
+                    {{ form.password|as_crispy_field  }}
+                  </div>
+                    <button name="submit" class="btn btn-primary">Log in</button>
+                    <input type="hidden" name="text" value="{% url  'base:home' %}">
+                </form>
+
+            <div>
+
+        </div>
+{% endblock body %}
