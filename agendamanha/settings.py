@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'agendamanha.base',
     'agendamanha.afirmacoes',
     'agendamanha.diario',
+    'agendamanha.users',
     # para estilisar o forms
     'crispy_forms',
 ]
@@ -179,3 +180,7 @@ if AWS_ACCESS_KEY_ID:
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'users:login'
+
+LOGIN_REDIRECT_URL = 'base:home'

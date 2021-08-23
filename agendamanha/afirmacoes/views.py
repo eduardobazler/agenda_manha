@@ -1,15 +1,24 @@
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from django.shortcuts import render, redirect
 from agendamanha.afirmacoes.models import Afirmacao, AfirmacaoForm
 from django.contrib import messages
 
 
+def check_afirmacao_owner(afirmacao, request):
+    if afirmacao.owner != request.user:
+        raise Http404
+
+
+@login_required
 def afirmacoes(request):
     """Mostra todas as afirmações."""
-    afirmacoes = Afirmacao.objects.order_by('date_added')
+    afirmacoes = Afirmacao.objects.filter(owner=request.user).order_by('date_added')
     context = {'afirmacoes': afirmacoes}
     return render(request, 'afirmacoes/afirmacoes.html', context)
 
 
+@login_required
 def add_afirmcao(request):
     """Add nova afirmação"""
     if request.method != 'POST':
@@ -17,15 +26,20 @@ def add_afirmcao(request):
     else:
         form = AfirmacaoForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            nova_afirmacao = form.save(commit=False)
+            nova_afirmacao.owner = request.user
+            nova_afirmacao.save()
             return redirect('afirmacoes:afirmacoes')
 
     context = {'form': form}
     return render(request, 'afirmacoes/add_afirmacao.html', context)
 
 
+@login_required
 def edit_afirmacao(request, afirmacao_id):
     afirmacao = Afirmacao.objects.get(id=afirmacao_id)
+
+    check_afirmacao_owner(afirmacao, request)
 
     if request.method != 'POST':
         form = AfirmacaoForm(instance=afirmacao)
@@ -39,8 +53,12 @@ def edit_afirmacao(request, afirmacao_id):
     return render(request, 'afirmacoes/edit_afirmacao.html', context)
 
 
+@login_required
 def del_afirmacao(request, afirmacao_id):
     afirmacao = Afirmacao.objects.get(id=afirmacao_id)
+
+    check_afirmacao_owner(afirmacao, request)
+
     afirmacao.delete()
 
     messages.info(request, 'Afirmação deletada com sucesso.')

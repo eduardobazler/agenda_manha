@@ -35,8 +35,26 @@
                     <li class="nav-item">
 							 <a class="nav-link" href='{% url 'diario:diario' %}'>Diário</a>
 						</li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+							 <a class="nav-link">Hello, {{ user.email }}</a>
+						</li>
+                        <li class="nav-item">
+							 <a class="nav-link" href="{% url 'users:sair_login' %}">Log out</a>
+						</li>
+                    {% else %}
+                        <li class="nav-item">
+							 <a class="nav-link" href='{% url 'users:login' %}'>Log in</a>
+						</li>
+                        <li class="nav-item">
+							 <a class="nav-link" href='{% url 'users:register' %}'>Registrar-se</a>
+						</li>
+                    {% endif %}
+
+
 
                 </ul>
+
 
               </div>
             </nav>
