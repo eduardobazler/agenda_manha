@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from agendamanha.afirmacoes.models import Afirmacao, AfirmacaoForm
 from django.contrib import messages
 
@@ -37,7 +37,7 @@ def add_afirmcao(request):
 
 @login_required
 def edit_afirmacao(request, afirmacao_id):
-    afirmacao = Afirmacao.objects.get(id=afirmacao_id)
+    afirmacao = get_object_or_404(Afirmacao, id=afirmacao_id)
 
     check_afirmacao_owner(afirmacao, request)
 
@@ -55,7 +55,7 @@ def edit_afirmacao(request, afirmacao_id):
 
 @login_required
 def del_afirmacao(request, afirmacao_id):
-    afirmacao = Afirmacao.objects.get(id=afirmacao_id)
+    afirmacao = get_object_or_404(Afirmacao, id=afirmacao_id)
 
     check_afirmacao_owner(afirmacao, request)
 
