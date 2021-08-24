@@ -35,26 +35,28 @@
                     <li class="nav-item">
 							 <a class="nav-link" href='{% url 'diario:diario' %}'>Diário</a>
 						</li>
-                    {% if user.is_authenticated %}
-                        <li class="nav-item">
-							 <a class="nav-link">Hello, {{ user.email }}</a>
-						</li>
-                        <li class="nav-item">
-							 <a class="nav-link" href="{% url 'users:sair_login' %}">Log out</a>
-						</li>
-                    {% else %}
-                        <li class="nav-item">
-							 <a class="nav-link" href='{% url 'users:login' %}'>Log in</a>
-						</li>
-                        <li class="nav-item">
-							 <a class="nav-link" href='{% url 'users:register' %}'>Registrar-se</a>
-						</li>
-                    {% endif %}
-
-
-
                 </ul>
+                    {% if user.is_authenticated %}
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item" style="margin: auto;">
+                                 <a class="text-white">Conta - {{ user.email }}</a>
+                            </li>
+                            <li class="nav-item" style="margin-left: 10px;">
+                                 <a class="nav-link btn bg-light" href="{% url 'users:sair_login' %}">Log out</a>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <ul class="nav justify-content-end">
+                              <li class="nav-item">
+                                <a class="nav-link btn bg-light"  href="{% url 'users:login' %}">Log in</a>
+                              </li>
+                              <li class="nav-item" style="margin-left: 5px;">
+                                  <a class="nav-link btn bg-light" href="{% url 'users:register' %}">Registrar-se</a>
 
+                              </li>
+                        </ul>
+
+                    {% endif %}
 
               </div>
             </nav>
@@ -65,28 +67,7 @@
 {% block body %}
 {% endblock body %}
 </div>
-    <footer class="main-footer" style="color: #ffefef;">
-        <div class="container-fluid" >
-            <div class="row"  >
-                <div class="col-md-12" style="margin-top: 15px;">
-                    <h3>Entre em contato</h3>
-                    <address>
-                        +55 12 996716167
-                        <br>
-                        <a href="https://www.linkedin.com/in/eduardo-bazler-782495127/" target="_blank">Linkedin: Eduardo Bazler</a>
-                    </address>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid" style="background-color: #1b1b1b;">
-            <div class="row">
-                <div class="col-md-12">
-                    {% now 'Y' %} Agenda Manhã. Todos os direitos reservados.
-
-                </div>
-            </div>
-        </div>
-    </footer>
+    {% block footer %}{% endblock footer %}
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>

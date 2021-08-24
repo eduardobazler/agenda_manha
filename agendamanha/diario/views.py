@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from agendamanha.diario.models import Diario, DiarioForm
 
@@ -39,7 +39,7 @@ def add_entrada(request):
 
 @login_required
 def edit_entrada(request, entrada_id):
-    entrada = Diario.objects.get(id=entrada_id)
+    entrada = get_object_or_404(Diario, id=entrada_id)
 
     check_entrada_owner(entrada, request)
 
@@ -58,7 +58,7 @@ def edit_entrada(request, entrada_id):
 
 @login_required
 def del_entrada(request, entrada_id):
-    entrada = Diario.objects.get(id=entrada_id)
+    entrada = get_object_or_404(Diario, id=entrada_id)
 
     check_entrada_owner(entrada, request)
 
