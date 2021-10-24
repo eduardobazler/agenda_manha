@@ -6,7 +6,7 @@ from agendamanha.users.models import CustomUserCreationForm
 
 def sair_login(request):
     logout(request)
-    return render(request, 'base/index.html')
+    return redirect('users:login')
 
 
 def register(request):

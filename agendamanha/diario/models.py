@@ -8,6 +8,7 @@ class Diario(models.Model):
     """Campo para escrever um diário"""
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+    date_update = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -14,8 +15,14 @@ def check_entrada_owner(entrada, request):
 @login_required
 def diario(request):
     """Mostra todas as afirmações."""
-    entradas = Diario.objects.filter(owner=request.user).order_by('date_added')
-    entradas = entradas.reverse()
+    entradas_list = Diario.objects.filter(owner=request.user).order_by('-date_added')
+
+    paginator = Paginator(entradas_list, 2)
+
+    page = request.GET.get('page')
+
+    entradas = paginator.get_page(page)
+
     context = {'entradas': entradas}
     return render(request, 'diario/diario.html', context)
 

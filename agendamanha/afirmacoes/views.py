@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from agendamanha.afirmacoes.models import Afirmacao, AfirmacaoForm
@@ -13,7 +14,14 @@ def check_afirmacao_owner(afirmacao, request):
 @login_required
 def afirmacoes(request):
     """Mostra todas as afirmações."""
-    afirmacoes = Afirmacao.objects.filter(owner=request.user).order_by('date_added')
+    afirmacoes_list = Afirmacao.objects.filter(owner=request.user).order_by('date_added')
+
+    paginator = Paginator(afirmacoes_list, 3)
+
+    page = request.GET.get('page')
+
+    afirmacoes = paginator.get_page(page)
+
     context = {'afirmacoes': afirmacoes}
     return render(request, 'afirmacoes/afirmacoes.html', context)
 

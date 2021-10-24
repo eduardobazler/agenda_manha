@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{%  block titulo %}
+    Add_tarefa
+{% endblock titulo %}
+
+{%  block body %}
+    <main role="main" class="container">
+    <div class="card text-center pb-2 mb-2 border-bottom">
+        <div class="card-header">
+      </div>
+      <div class="card-body">
+        <h1 class="card-title">Lista de tarefas</h1>
+{#        {% include 'afirmacoes/frase_afirmacao.html' %}#}
+            Incluir texto de tarefas
+      </div>
+    </div>
+
+{#    Aqui é onde começa a construção seguindo o vídeo#}
+
+    <div class="card">
+
+
+        <div class="card-header">
+            <h1 class="text-primary">Adicione sua nova tarefa</h1>
+        </div>
+        <div class="list-div">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" class="btn btn-success" value="Criar Tarefa">
+            </form>
+        </div>
+
+    </div>
+
+{% endblock body %}

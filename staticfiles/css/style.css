@@ -1,0 +1,111 @@
+.minha-row{
+    margin-top: 2%;
+}
+
+.main-footer{
+    margin-top: 20px;
+    background-color: #343a40;
+}
+
+/*botao de adicionar*/
+
+#add-link{
+    text-decoration: none;
+}
+
+.add-div{
+    background-color: #3476e3;
+    cursor: pointer;
+    display: inline-block;
+    color: #FFF;
+    padding: 8px;
+    border-radius: 5px;
+    margin-right: 25px;
+
+}
+
+.fas.fa-plus {
+    color: #FFF;
+    margin-right: 10px;
+    margin-left: 5px;
+
+}
+
+/* search */
+
+.fas.fa-search {
+    position: absolute;
+    top: 12px;
+    right: 26px;
+
+}
+
+.search-div{
+    padding: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+
+
+/* Lista de tarefas */
+
+.list-div {
+    padding: 10px;
+
+
+}
+
+.task-list {
+    padding: 2px;
+}
+
+.task-item {
+    list-style: none;
+    font-size: 20px;
+    height: 50px;
+    padding-top: 10px;
+    border-bottom: 1px dashed #cccccc;
+}
+
+.fas.fa-trash, .fas.fa-edit{
+    cursor: pointer;
+    margin: 5px;
+    font-size: 20px;
+    float: right;
+}
+
+.fas.fa-trash{
+    color:  #db1e47;
+
+}
+
+.fa-edit{
+    color: #13c43f;
+}
+
+ul.messages {
+    padding: 0px;
+}
+
+ul.messages li{
+    list-style: none;
+}
+
+/*paginação das tarefas*/
+
+.pagination {
+    margin-bottom: 20px;
+}
+
+.step-links{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step-links .current{
+    margin-left: 5px;
+    margin-right: 5px;
+}

@@ -1,0 +1,98 @@
+{% extends 'base/base.html' %}
+
+{%  block titulo %}
+    lista de tarefas
+{% endblock titulo %}
+
+{%  block body %}
+    <main role="main" class="container">
+    <div class="card text-center pb-2 mb-2 border-bottom">
+        <div class="card-header">
+      </div>
+      <div class="card-body">
+        <h1 class="card-title">Lista de tarefas</h1>
+{#        {% include 'afirmacoes/frase_afirmacao.html' %}#}
+            Incluir texto de tarefas
+      </div>
+    </div>
+
+{#    Aqui é onde começa a construção seguindo o vídeo#}
+
+    <div class="card">
+
+
+        <div class="card-header">
+            <h1 class="text-primary">Lista de tarefas</h1>
+        </div>
+        <div class="list-div">
+            <a id="add-link" href="{% url 'tarefas:add_tarefa' %}">
+                <div class="col-2 add-div">
+                    <i class="fas fa-plus"></i> Adicionar tarefa
+                </div>
+            </a>
+            <div class="col-9 search-div">
+                <form method="GET" id="search-form">
+                    <input class="form-control" type="text" id="search" name="search"
+                           placeholder="Digine o nome da tarefa para buscar"
+                           value="{{ request.GET.search }}">
+                    <i class="fas fa-search" id="search-btn"></i>
+                </form>
+            </div>
+
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li {% if message.tags %}class="alert alert-{{ message.tags}}" {% endif %}>{{ message }}</li>
+                    {%  endfor %}
+                </ul>
+            {% endif %}
+
+            {% for tarefa in tarefas %}
+                <ul class="task-list">
+                    <li class="task-item">
+                        <a href="{% url 'tarefas:tarefa' tarefa.id %}"><span>{{ tarefa.titulo }}</span></a>
+
+                        <a href="{% url 'tarefas:del_tarefa' tarefa.id %}" class="delete-btn-tarefa"><span><i class="fas fa-trash"></i></span></a>
+
+                        <a href="{% url 'tarefas:edit_terefa' tarefa.id %}"><span><i class="fas fa-edit"></i></span></a>
+
+                    </li>
+
+                </ul>
+            {% empty %}
+                <ul class="task-list">
+                    <li class="task-item">
+                        <span>Não há terefas registradas ainda.</span>
+                    </li>
+
+                </ul>
+            {% endfor %}
+
+        </div>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if tarefas.has_previous %}
+                    <a href="?page={{ tarefas.previous_page_number }}">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                {% endif %}
+
+                {% if tarefas.paginator.num_pages %}
+                <span class="current">
+                    {{ tarefas.number }} de {{ tarefas.paginator.num_pages }}
+                </span>
+                {% endif %}
+
+                {% if tarefas.has_next %}
+                    <a href="?page={{ tarefas.next_page_number }}">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                {% endif %}
+            </span>
+
+        </div>
+
+    </div>
+
+{% endblock body %}
