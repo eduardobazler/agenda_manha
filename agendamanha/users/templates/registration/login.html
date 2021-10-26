@@ -23,7 +23,7 @@
                     {{ form.password|as_crispy_field  }}
                   </div>
                     <button name="submit" class="btn btn-primary">Log in</button>
-                    <input type="hidden" name="text" value="{% url  'base:home' %}">
+                    <input type="hidden" name="next" value="{% url  'base:home' %}">
                 </form>
 
             <div>

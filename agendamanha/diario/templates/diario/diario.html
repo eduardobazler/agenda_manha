@@ -30,7 +30,7 @@
                       <div class="card-body">
                         <blockquote class="blockquote">
                           <p>{{ entrada.text | linebreaks }}</p>
-                          <footer class="blockquote-footer">Data de atualização: <cite title="Source Title">{{ entrada.date_added }}</cite></footer>
+                          <footer class="blockquote-footer">Data de atualização: <cite title="Source Title">{{ entrada.date_update }}</cite></footer>
                             <a href="{% url 'diario:edit_entrada' entrada.id %}" class="btn btn-primary" style="margin-top: 10px;">Editar</a>
                         </blockquote>
                       </div>
@@ -42,6 +42,26 @@
                       </div>
                 </div>
             {% endfor %}
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if entradas.has_previous %}
+                    <a href="?page={{ entradas.previous_page_number }}">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                {% endif %}
+
+                <span class="current">
+                    {{ entradas.number }} de {{ entradas.paginator.num_pages }}
+                </span>
+
+                {% if entradas.has_next %}
+                    <a href="?page={{ entradas.next_page_number }}">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                {% endif %}
+            </span>
+
         </div>
     </main>
 

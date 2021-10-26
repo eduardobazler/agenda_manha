@@ -23,4 +23,5 @@ urlpatterns = [
     path('users/', include('agendamanha.users.urls')),
     path('afirmacoes/', include('agendamanha.afirmacoes.urls')),
     path('diario/', include('agendamanha.diario.urls')),
+    path('tarefas/', include('agendamanha.tarefas.urls')),
 ]

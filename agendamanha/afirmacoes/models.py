@@ -9,6 +9,7 @@ class Afirmacao(models.Model):
     titulo = models.CharField(max_length=100)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
+    date_update = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -12,6 +12,8 @@
         <a href="{% url 'afirmacoes:add_afirmacao' %}" class="btn btn-primary">Add afirmação</a>
       </div>
     </div>
+
+    <div>
     {% if messages %}
         {% for massage in messages %}
             <h2 {% if massage.tags %}class="alert alert-success" {% endif %}>{{ massage }}</h2>
@@ -19,14 +21,14 @@
     {% endif %}
 
     {% for afirmacao in afirmacoes %}
-            <div class="card">
+            <div class="card mb-3">
                   <div class="card-header">
-                    <h3>{{ afirmacao.titulo }}</h3>
+                    <h3 class="text-primary">{{ afirmacao.titulo }}</h3>
                   </div>
                   <div class="card-body">
                     <blockquote class="blockquote">
                       <p>{{ afirmacao.text | linebreaks }}</p>
-                      <footer class="blockquote-footer">Data de atualização: <cite title="Source Title">{{ afirmacao.date_added }}</cite></footer>
+                      <footer class="blockquote-footer">Data de atualização: <cite title="Source Title">{{ afirmacao.date_update }}</cite></footer>
                         <a href="{% url 'afirmacoes:edit_afirmacao' afirmacao.id %}" class="btn btn-primary" style="margin-top: 10px;">Editar</a>
                     </blockquote>
                   </div>
@@ -38,6 +40,28 @@
                   </div>
             </div>
         {% endfor %}
+    </div>
+    <div class="pagination">
+            <span class="step-links">
+                {% if afirmacoes.has_previous %}
+                    <a href="?page={{ afirmacoes.previous_page_number }}">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                {% endif %}
+
+                <span class="current">
+                    {{ afirmacoes.number }} de {{ afirmacoes.paginator.num_pages }}
+                </span>
+
+                {% if afirmacoes.has_next %}
+                    <a href="?page={{ afirmacoes.next_page_number }}">
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                {% endif %}
+            </span>
+
+        </div>
+
     </main>
 
 

@@ -23,7 +23,7 @@
                       <h5 class="text-primary">Entrada:</h5>
                       <p>{{ form.text|as_crispy_field}}</p>
                         <button type="submit" class="btn btn-primary">Adicionar</button>
-                        <a href="{% url 'diario:del_entrada' entrada.id %}" class="btn btn-danger">Deletar</a>
+                        <a href="{% url 'diario:del_entrada' entrada.id %}" class="btn btn-danger delete-btn-entrada">Deletar</a>
                     </blockquote>
               </div>
         </div>
